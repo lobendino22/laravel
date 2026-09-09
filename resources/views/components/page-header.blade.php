@@ -12,7 +12,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="" class="btn btn-primary">Actions</a>
+            <a href="{{ $actionUrl ?? '' }}" class="btn btn-primary">{{ $buttonText ?? 'Actions' }}</a>
         </div>
     </div>
 </div>

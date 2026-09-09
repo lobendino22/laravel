@@ -1,0 +1,199 @@
+Conceptual Framework of the Study
+
+This study adopts the Input-Process-Output (IPO) Model as its conceptual framework. The IPO model illustrates the flow of data and activities within APPOINTLIST: A Web-Based Registrar Appointment Scheduling System for Ilocos Sur Polytechnic State College – Tagudin Campus. The framework demonstrates how user information, appointment requests, and document requests are collected, processed, and transformed into meaningful outputs that improve the efficiency, accessibility, and organization of the Registrar Office's services.
+
+INPUT
+The Input consists of the following data required by the system:
+
+1. Student Information
+   - Student ID
+   - Name
+   - Course
+   - Year Level
+   - Contact Number
+
+2. User Login Credentials
+   - Username and password used for authentication and access control within the system.
+
+3. Appointment Request
+   - Purpose of Visit
+   - Preferred Date and Time
+
+4. Document Request
+   - Type and purpose of the requested document to be processed by the Registrar Office.
+
+5. Registrar Office Personnel Information
+   - Staff details responsible for managing and processing appointments and document requests.
+
+6. Available Appointment Schedules
+   - Predefined time slots and dates available for student appointment booking.
+
+7. SMS Notification Details
+   - Mobile number and message content used for sending SMS notifications to students regarding their appointment and document request status.
+
+These inputs serve as the primary data required for the system to manage appointments and document requests accurately and efficiently.
+
+PROCESS
+
+The Process section details the complete workflow of the APPOINTLIST system from the moment a student accesses the system to the final generation of reports. The following describes the full process using the Input-Process-Output (IPO) framework:
+
+Phase 1: System Access and Authentication
+
+1.1 User Registration
+   - A new student accesses the APPOINTLIST web application and navigates to the registration page.
+   - The student provides the required information including Student ID, full name, course, year level, contact number, and desired login credentials.
+   - The system validates the input data, checking for completeness, correct format, and uniqueness of the Student ID.
+   - Upon successful validation, the system stores the student information in the centralized database and confirms account creation.
+   - For Registrar Office personnel, a separate registration process is managed by the system administrator, assigning appropriate access privileges and roles.
+
+1.2 User Login and Authentication
+   - A registered user (student or registrar personnel) accesses the login page and enters their username and password.
+   - The system verifies the credentials against the stored records in the database.
+   - If the credentials are correct, the system grants access and redirects the user to their respective dashboard.
+   - If the credentials are incorrect, the system displays an error message and denies access.
+   - The system implements session management to ensure secure and uninterrupted access throughout the user's active session.
+
+Phase 2: Appointment Scheduling
+
+2.1 Viewing Available Schedules
+   - After logging in, the student navigates to the appointment scheduling page.
+   - The system retrieves and displays all available appointment slots, including dates and time ranges set by the Registrar Office.
+   - The student can view which time slots are still open, partially booked, or fully booked.
+
+2.2 Selecting and Submitting an Appointment
+   - The student selects their preferred date and time from the available schedule options.
+   - The student specifies the purpose of the visit (e.g., transcript of records, request for diploma, authentication of documents, etc.).
+   - The system captures the appointment request details and temporarily holds the selected slot while the submission is being processed.
+
+2.3 Appointment Validation
+   - The system performs a validation check to ensure the selected time slot is still available and has not been booked by another student.
+   - The system checks for duplicate appointment requests from the same student to prevent scheduling conflicts.
+   - The system verifies that all required fields are completed and that the appointment falls within the allowed booking period.
+   - If the appointment passes all validation checks, the system confirms the booking and assigns it a pending status.
+   - If the validation fails (e.g., slot already taken, incomplete information), the system notifies the student of the issue and prompts them to select another slot or correct the information.
+
+2.4 Appointment Confirmation
+   - Once validated, the system saves the appointment record in the database with a status of "Pending."
+   - The system sends an SMS notification to the student's registered mobile number confirming the receipt of the appointment request and informing them to wait for further status updates.
+
+Phase 3: Document Request Processing
+
+3.1 Submission of Document Request
+   - The student navigates to the document request page within the system.
+   - The student selects the type of document requested (e.g., Transcript of Records, Diploma, Certificate of Enrollment, Good Moral, etc.) and specifies the purpose of the request.
+   - The system captures the document request details and links them to the student's account and, if applicable, to the scheduled appointment.
+
+3.2 Document Request Reception
+   - The Registrar Office personnel accesses their dashboard and views all incoming document requests.
+   - The system organizes and displays document requests according to their current status (pending, processing, ready for release, completed).
+   - The registrar personnel reviews each document request and acknowledges receipt by updating the status.
+
+Phase 4: Appointment and Document Request Management
+
+4.1 Approval or Decline of Appointment Requests
+   - The Registrar Office personnel reviews each pending appointment request based on the student's purpose of visit and the office's capacity.
+   - The registrar approves the appointment if the request is valid and the schedule is available, or declines the appointment if the request cannot be accommodated.
+   - The system updates the appointment status accordingly (Approved or Declined).
+   - The system sends an SMS notification to the student informing them whether their appointment has been approved or declined, along with any relevant instructions.
+
+4.2 Processing of Document Requests
+   - Upon approval of the appointment or upon receiving a walk-in document request, the Registrar Office personnel begins processing the requested documents.
+   - The personnel updates the document request status from "Pending" to "Processing" as work begins.
+   - The system records the date and time of each status change for tracking and audit purposes.
+   - When the document is finished and ready for pickup, the personnel updates the status to "Ready for Release."
+
+4.3 Completion of Document Requests
+   - The student visits the Registrar Office on the approved appointment date to claim the requested document.
+   - The registrar personnel verifies the student's identity and releases the document.
+   - The system updates the document request status from "Ready for Release" to "Completed."
+   - The system logs the completion date and time for record-keeping purposes.
+
+Phase 5: Schedule Management
+
+5.1 Configuration of Available Schedules
+   - The Registrar Office personnel accesses the schedule management page.
+   - The personnel sets available appointment dates and time slots based on office hours and capacity.
+   - The system stores the configured schedules in the database and makes them available for student booking.
+
+5.2 Modification and Cancellation of Schedules
+   - The Registrar Office personnel can modify or remove available time slots if there are changes in office operations (e.g., holidays, special events, reduced staffing).
+   - The system notifies affected students via SMS if their confirmed appointments are impacted by schedule changes.
+   - Students may also cancel their appointments through the system before the scheduled date, freeing the slot for other students.
+
+Phase 6: SMS Notification System
+
+6.1 Automatic SMS Generation
+   - The system is configured to automatically trigger SMS notifications at key points in the appointment and document request lifecycle.
+   - SMS notifications are sent when an appointment request is received, when an appointment is approved or declined, and when a requested document is ready for release.
+   - The system formats the SMS message with the relevant details including the student's name, appointment date and time, purpose of visit, and document status.
+
+6.2 SMS Delivery and Logging
+   - The system sends the generated SMS to the student's registered mobile number through an SMS gateway.
+   - The system logs all sent SMS notifications with timestamps for reference and monitoring purposes.
+   - In case of delivery failure, the system records the error and allows the registrar personnel to resend the notification manually.
+
+Phase 7: Record Storage and Database Management
+
+7.1 Centralized Data Storage
+   - All data including student information, appointment records, document requests, personnel accounts, and system configurations are stored in a centralized database.
+   - The system ensures data integrity by implementing proper database relationships and constraints.
+
+7.2 Data Retrieval and Search
+   - The system provides search and filter functionality to allow both students and registrar personnel to quickly locate specific records.
+   - Students can view their own appointment history and document request status.
+   - Registrar personnel can access all records for administrative and monitoring purposes.
+
+Phase 8: Report Generation
+
+8.1 Report Compilation
+   - The system automatically compiles records based on their current statuses and generates comprehensive reports.
+   - Available reports include:
+     - Pending Documents Report: Lists all document requests that are awaiting processing.
+     - Processing Documents Report: Lists all document requests currently being processed.
+     - Ready for Release Documents Report: Lists all documents that have been completed and are ready for student pickup.
+     - Completed Documents Report: Lists all document requests that have been fulfilled and released.
+     - Student Records Report: Lists all student information and their associated appointment and document request history.
+
+8.2 Report Export and Distribution
+   - The system allows registrar personnel to view reports on the dashboard in real-time.
+   - Reports can be exported in various formats (e.g., PDF, Excel) for printing, distribution, and official use.
+   - These reports serve as tools for monitoring, decision-making, and performance evaluation of the Registrar Office.
+
+These processes ensure an organized, reliable, and efficient management of registrar transactions while supporting both scheduled appointments and walk-in services.
+
+OUTPUT
+The Output consists of the following results produced by the system:
+
+1. Confirmed Appointments
+   - Successfully validated and approved appointment schedules for students, including the date, time, purpose, and assigned personnel.
+
+2. Appointment Status
+   - Real-time status updates on each appointment:
+     - Pending: Appointment request has been submitted and is awaiting review.
+     - Approved: Appointment has been confirmed by the Registrar Office.
+     - Declined: Appointment request has been rejected with a reason.
+     - Completed: The appointment has been fulfilled.
+
+3. Document Request Status
+   - Current status of each document request:
+     - Pending: Document request has been submitted and is awaiting processing.
+     - Processing: The document is currently being prepared by the Registrar Office.
+     - Ready for Release: The document has been processed and is available for student pickup.
+     - Completed: The document has been released to the student.
+
+4. SMS Notifications
+   - Automated text messages sent to students at the following instances:
+     - Confirmation of appointment request receipt
+     - Approval or decline of appointment request
+     - Notification that requested documents are ready for release
+     - Any updates or changes to the appointment schedule
+
+5. Generated Reports
+   - Comprehensive reports generated by the system for administrative use, including:
+     - Pending Documents Report
+     - Processing Documents Report
+     - Ready for Release Documents Report
+     - Completed Documents Report
+     - Student Records Report
+
+These outputs improve the efficiency, transparency, accessibility, and overall quality of registrar services at Ilocos Sur Polytechnic State College – Tagudin Campus.
