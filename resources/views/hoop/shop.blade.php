@@ -66,7 +66,7 @@
                     <div class="hoop-product">
                         <div class="hoop-product-img">
                             @if($product->photo)
-                                <img src="{{ asset('_uploads/' . $product->photo) }}" alt="{{ $product->name }}">
+                                <img src="{{ $product->photo_url }}" alt="{{ $product->name }}">
                             @else
                                 <i class="fa fa-basketball-ball fa-2x text-muted"></i>
                             @endif
@@ -101,6 +101,12 @@
                 </div>
             @endforeach
         </div>
+
+        @if($products->hasPages())
+            <div class="d-flex justify-content-center mt-4 mb-2">
+                {{ $products->appends(request()->query())->links('pagination::bootstrap-4') }}
+            </div>
+        @endif
     @endif
 </div>
 @endsection

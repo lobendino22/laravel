@@ -108,6 +108,7 @@ Route::prefix('hoop-shop')->group(function () {
             Route::post('/customers', [CustomerController::class, 'store'])->name('hoop.admin.customers.store');
             Route::get('/customers/{customer}/edit', [CustomerController::class, 'edit'])->name('hoop.admin.customers.edit');
             Route::put('/customers/{customer}', [CustomerController::class, 'update'])->name('hoop.admin.customers.update');
+            Route::post('/customers/{customer}/toggle-active', [CustomerController::class, 'toggleActive'])->name('hoop.admin.customers.toggleActive');
             Route::get('/customers/{customer}/delete', [CustomerController::class, 'destroy'])->name('hoop.admin.customers.destroy');
 
             // Orders management

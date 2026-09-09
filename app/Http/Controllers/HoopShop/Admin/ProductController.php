@@ -5,13 +5,15 @@ namespace App\Http\Controllers\HoopShop\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
     // List all products
     public function index()
     {
-        $products = Product::orderByDesc('created_at')->get();
+        $products = Product::orderByDesc('created_at')->paginate(10);
+
         return view('hoop.admin.products.index', compact('products'));
     }
 
@@ -25,13 +27,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $data = $this->validateData($request);
+        $photo = $this->resolvePhoto($request);
 
-        $filename = null;
-        if ($request->file('photo')) {
-            $filename = $this->uploadPhoto($request);
-        }
-
-        Product::create($data + ['photo' => $filename]);
+        Product::create($data + ['photo' => $photo]);
 
         return redirect()->route('hoop.admin.products')->with('success', 'Product added successfully!');
     }
@@ -40,6 +38,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
+
         return view('hoop.admin.products.form', compact('product'));
     }
 
@@ -48,13 +47,9 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $data = $this->validateData($request);
+        $photo = $this->resolvePhoto($request, $product->photo);
 
-        $filename = $product->photo;
-        if ($request->file('photo')) {
-            $filename = $this->uploadPhoto($request);
-        }
-
-        $product->update($data + ['photo' => $filename]);
+        $product->update($data + ['photo' => $photo]);
 
         return redirect()->route('hoop.admin.products')->with('success', 'Product updated successfully!');
     }
@@ -78,11 +73,46 @@ class ProductController extends Controller
         ]);
     }
 
+    /**
+     * Resolve the product photo.
+     *
+     * An uploaded file wins, otherwise a pasted image URL (e.g. a Google
+     * Images link) is used. When neither is provided the current photo is
+     * kept (so editing a product without touching the image does not lose it).
+     */
+    private function resolvePhoto(Request $request, ?string $current = null): ?string
+    {
+        if ($request->hasFile('photo')) {
+            $request->validate([
+                'photo' => ['image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            ]);
+
+            return $this->uploadPhoto($request);
+        }
+
+        if ($request->filled('image_url')) {
+            $request->validate([
+                'image_url' => ['url', 'max:2048'],
+            ]);
+
+            return trim((string) $request->input('image_url'));
+        }
+
+        return $current;
+    }
+
     private function uploadPhoto(Request $request): string
     {
         $file = $request->file('photo');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $file->move(public_path('_uploads'), $filename);
+        $dir = public_path('_uploads');
+
+        if (! is_dir($dir)) {
+            mkdir($dir, 0775, true);
+        }
+
+        $filename = 'product_' . time() . '_' . Str::random(10) . '.' . ($file->guessExtension() ?: 'png');
+        $file->move($dir, $filename);
+
         return $filename;
     }
 }

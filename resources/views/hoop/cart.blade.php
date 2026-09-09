@@ -81,7 +81,7 @@
                             <td>
                                 <div class="cart-product">
                                     @if($item['product']->photo)
-                                        <img src="{{ asset('_uploads/' . $item['product']->photo) }}" alt=""
+                                        <img src="{{ $item['product']->photo_url }}" alt=""
                                              class="cart-product-img">
                                     @else
                                         <div style="width:56px;height:56px;border-radius:8px;background:#f7f8fa;display:flex;align-items:center;justify-content:center;">

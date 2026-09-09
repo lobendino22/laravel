@@ -22,7 +22,7 @@ class ShopController extends Controller
                     ->orWhere('description', 'like', '%' . $query . '%');
             })
             ->orderBy('name')
-            ->get();
+            ->paginate(12);
 
         return view('hoop.shop', compact('products', 'query'));
     }

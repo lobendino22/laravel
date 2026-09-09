@@ -2148,3 +2148,40 @@ body {
         font-size: 0.8rem;
     }
 }
+
+/* ===================================================================
+   Readability overrides for INSPINIA content areas
+   (shop.css sets body text to white for the dark theme; the admin/
+   form pages use light backgrounds so inherited text must be dark)
+   =================================================================== */
+#page-wrapper,
+#page-wrapper .wrapper-content,
+#page-wrapper .ibox-content,
+#page-wrapper .form-group,
+#page-wrapper label,
+#page-wrapper .form-control,
+#page-wrapper textarea.form-control,
+#page-wrapper select.form-control,
+#page-wrapper input.form-control,
+#page-wrapper small.text-muted,
+#page-wrapper .table,
+#page-wrapper .table td,
+#page-wrapper .table th,
+#page-wrapper .alert,
+#page-wrapper p {
+  color: #1f2937;
+}
+
+#page-wrapper .form-control::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+#page-wrapper .page-heading h2,
+#page-wrapper .page-heading .breadcrumb-item.active strong {
+  color: #1ab394;
+}
+
+#page-wrapper .page-heading .breadcrumb-item a {
+  color: #676a6c;
+}

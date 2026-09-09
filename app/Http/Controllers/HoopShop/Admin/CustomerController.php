@@ -35,6 +35,7 @@ class CustomerController extends Controller
             'email' => $data['email'],
             'password' => $data['password'],
             'role' => 'client',
+            'active' => true,
         ]);
 
         return redirect()->route('hoop.admin.customers')->with('success', 'Customer added successfully!');
@@ -55,16 +56,25 @@ class CustomerController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email,' . $customer->id],
-            'password' => ['nullable', 'string', 'min:6', 'confirmed'],
         ]);
 
         $customer->update([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => $data['password'] ?: $customer->password,
         ]);
 
         return redirect()->route('hoop.admin.customers')->with('success', 'Customer updated successfully!');
+    }
+
+    // Toggle customer active status (deactivate/activate)
+    public function toggleActive($id)
+    {
+        $customer = User::where('role', 'client')->findOrFail($id);
+        $customer->active = !$customer->active;
+        $customer->save();
+
+        $status = $customer->active ? 'activated' : 'deactivated';
+        return redirect()->route('hoop.admin.customers')->with('success', "Customer {$status} successfully!");
     }
 
     // Delete customer
