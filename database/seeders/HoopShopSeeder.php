@@ -5,410 +5,498 @@ namespace Database\Seeders;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class HoopShopSeeder extends Seeder
 {
     /**
-     * Seed the Hoop Shop with an admin account and basketball apparel.
+     * Seed HoopShop with admin account and basketball products.
      */
     public function run(): void
     {
-        // Admin account (idempotent)
-        if (! User::where('email', 'admin@hoopshop.com')->exists()) {
-            User::create([
-                'name' => 'Hoop Shop Admin',
-                'email' => 'admin@hoopshop.com',
-                'password' => 'admin123',
-                'role' => 'admin',
-            ]);
-        }
+        /*
+        |--------------------------------------------------------------------------
+        | Admin Account
+        |--------------------------------------------------------------------------
+        */
 
-         $products = [
-            // ---------- Jerseys ----------
+        User::updateOrCreate(
+            ['email' => 'admin@hoopshop.com'],
+            [
+                'name' => 'Hoop Shop Admin',
+                'password' => Hash::make('admin123'),
+                'role' => 'admin',
+            ]
+        );
+
+        /*
+        |--------------------------------------------------------------------------
+        | Products
+        |--------------------------------------------------------------------------
+        */
+
+        $products = [
+
+            // ==============================================================
+            // JERSEYS
+            // ==============================================================
+
             [
                 'name' => 'Home Jersey - Custom Name & Number',
-                'description' => 'Breathable mesh basketball jersey. Add your name and number for a personalized fit.',
+                'description' => 'Breathable mesh basketball jersey with customizable name and number.',
                 'price' => 549.00,
                 'stock' => 50,
-                'photo' => 'https://jerseycrafted.com/cdn/shop/files/custom-basketball-jersey-white-black-red.jpg?v=1760455335',
+                'photo' => 'https://images.pexels.com/photos/34917397/pexels-photo-34917397.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
-                'name' => 'Away Jersey - Custom Name & Number',
-                'description' => 'Same premium mesh as our home jersey in a contrasting away colorway.',
-                'price' => 549.00,
+                'name' => 'Away Basketball Jersey',
+                'description' => 'Lightweight away jersey designed for comfortable game-day performance.',
+                'price' => 499.00,
                 'stock' => 45,
-                'photo' => 'https://jerseycrafted.com/cdn/shop/files/custom-basketball-jersey-white-black-red.jpg?v=1760455335',
+                'photo' => 'https://images.pexels.com/photos/38398244/pexels-photo-38398244.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Reversible Practice Jersey',
-                'description' => 'Two-in-one scrimmage jersey with a contrasting inner layer for team drills.',
-                'price' => 480.00,
-                'stock' => 25,
-                'photo' => 'https://jerseycrafted.com/cdn/shop/files/custom-basketball-jersey-white-black-red.jpg?v=1760455335',
+                'description' => 'Two-sided reversible jersey ideal for basketball practices and scrimmages.',
+                'price' => 599.00,
+                'stock' => 35,
+                'photo' => 'https://images.pexels.com/photos/38398236/pexels-photo-38398236.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Youth Basketball Jersey',
-                'description' => 'Lightweight youth-sized jersey that is easy to move in and built to last the season.',
-                'price' => 429.00,
-                'stock' => 35,
-                'photo' => 'https://jerseycrafted.com/cdn/shop/files/custom-basketball-jersey-white-black-red.jpg?v=1760455335',
+                'description' => 'Comfortable basketball jersey made for young players.',
+                'price' => 399.00,
+                'stock' => 40,
+                'photo' => 'https://images.pexels.com/photos/39228514/pexels-photo-39228514.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Pro Stitched Swingman Jersey',
-                'description' => 'Premium stitched letters and numbers on a moisture-wicking pro-cut body.',
-                'price' => 1299.00,
-                'stock' => 18,
-                'photo' => 'https://jerseycrafted.com/cdn/shop/files/custom-basketball-jersey-white-black-red.jpg?v=1760455335',
+                'description' => 'Premium stitched basketball jersey with a professional-inspired design.',
+                'price' => 899.00,
+                'stock' => 25,
+                'photo' => 'https://images.pexels.com/photos/13234760/pexels-photo-13234760.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Retro Throwback Jersey',
-                'description' => 'Vintage 90s-style jersey with bold colors and a loose, comfortable cut.',
-                'price' => 999.00,
-                'stock' => 20,
-                'photo' => 'https://jerseycrafted.com/cdn/shop/files/custom-basketball-jersey-white-black-red.jpg?v=1760455335',
+                'description' => 'Classic-inspired basketball jersey featuring a retro look.',
+                'price' => 749.00,
+                'stock' => 30,
+                'photo' => 'https://images.pexels.com/photos/20613103/pexels-photo-20613103.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Sublimated Team Jersey',
-                'description' => 'All-over sublimated design that never fades, cracks, or peels.',
-                'price' => 699.00,
-                'stock' => 30,
-                'photo' => 'https://jerseycrafted.com/cdn/shop/files/custom-basketball-jersey-white-black-red.jpg?v=1760455335',
+                'description' => 'Full sublimated team jersey suitable for basketball leagues and tournaments.',
+                'price' => 649.00,
+                'stock' => 50,
+                'photo' => 'https://images.pexels.com/photos/3776963/pexels-photo-3776963.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Mesh Shooting Shirt',
-                'description' => 'Lightweight pullover shooting shirt worn over your jersey for warm-ups.',
-                'price' => 599.00,
-                'stock' => 22,
-                'photo' => 'https://static.golfonline.co.uk/media/img/1257468_001.857x1000.jpg',
+                'description' => 'Lightweight mesh shooting shirt for warm-ups and training.',
+                'price' => 449.00,
+                'stock' => 35,
+                'photo' => 'https://images.pexels.com/photos/8979887/pexels-photo-8979887.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
 
-            // ---------- Shorts ----------
+            // ==============================================================
+            // SHORTS
+            // ==============================================================
+
             [
                 'name' => 'Pro Basketball Shorts',
-                'description' => 'Lightweight quick-dry shorts with elastic waistband and side slits for full range of motion.',
-                'price' => 399.00,
-                'stock' => 40,
-                'photo' => 'https://images.footlocker.com/is/image/EBFL2/5D313R78?hei=500&wid=500',
+                'description' => 'Lightweight basketball shorts with breathable fabric and flexible fit.',
+                'price' => 449.00,
+                'stock' => 50,
+                'photo' => 'https://images.pexels.com/photos/12882017/pexels-photo-12882017.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Reversible Practice Shorts',
-                'description' => 'Flip between two team colors without changing your whole uniform.',
-                'price' => 349.00,
-                'stock' => 30,
-                'photo' => 'https://contents.mediadecathlon.com/p2424109/k%24d9a7a380b86b9bde70c7b4dd4d99045f/adult-2-way-basketball-shorts-sh500r-blackslashwhite.jpg',
+                'description' => 'Reversible practice shorts designed for training and scrimmages.',
+                'price' => 499.00,
+                'stock' => 40,
+                'photo' => 'https://images.pexels.com/photos/8337266/pexels-photo-8337266.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Compression Shorts',
-                'description' => 'Snug 7-inch compression shorts that reduce muscle fatigue during play.',
-                'price' => 449.00,
-                'stock' => 26,
-                'photo' => 'https://images.footlocker.com/is/image/EBFL2/5D313R78?hei=500&wid=500',
+                'description' => 'Stretch compression shorts providing support during intense activities.',
+                'price' => 349.00,
+                'stock' => 45,
+                'photo' => 'https://images.pexels.com/photos/8695271/pexels-photo-8695271.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Cargo Training Shorts',
-                'description' => 'Zippered cargo pockets keep your phone and keys secure during training.',
-                'price' => 499.00,
-                'stock' => 24,
-                'photo' => 'https://images.footlocker.com/is/image/EBFL2/5D313R78?hei=500&wid=500',
+                'description' => 'Durable training shorts with a practical athletic design.',
+                'price' => 399.00,
+                'stock' => 30,
+                'photo' => 'https://images.pexels.com/photos/18991014/pexels-photo-18991014.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Game-Day Elite Shorts',
-                'description' => 'Tailored pro-fit shorts with double-layer mesh for breathability.',
-                'price' => 550.00,
-                'stock' => 20,
-                'photo' => 'https://images.footlocker.com/is/image/EBFL2/5D313R78?hei=500&wid=500',
+                'description' => 'Premium basketball shorts made for competitive game-day performance.',
+                'price' => 549.00,
+                'stock' => 25,
+                'photo' => 'https://images.pexels.com/photos/8980125/pexels-photo-8980125.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Mesh Practice Shorts',
-                'description' => 'Affordable mesh shorts built for daily scrimmages and open runs.',
-                'price' => 329.00,
-                'stock' => 38,
-                'photo' => 'https://contents.mediadecathlon.com/p2424109/k%24d9a7a380b86b9bde70c7b4dd4d99045f/adult-2-way-basketball-shorts-sh500r-blackslashwhite.jpg',
+                'description' => 'Breathable mesh shorts designed for everyday basketball training.',
+                'price' => 379.00,
+                'stock' => 45,
+                'photo' => 'https://images.pexels.com/photos/8337302/pexels-photo-8337302.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
 
-            // ---------- Shoes ----------
+            // ==============================================================
+            // SHOES
+            // ==============================================================
+
             [
                 'name' => 'High-Top Basketball Shoes',
-                'description' => 'Ankle-supporting high-tops with cushioned sole for indoor and outdoor play.',
+                'description' => 'High-top basketball shoes designed for stability and court movement.',
                 'price' => 2499.00,
-                'stock' => 15,
-                'photo' => 'https://kickscrew.com/cdn/shop/files/main-square_d7e70429-f9aa-479d-85ac-9614f7488f5d.jpg',
+                'stock' => 20,
+                'photo' => 'https://images.pexels.com/photos/10942730/pexels-photo-10942730.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Low-Cut Court Shoes',
-                'description' => 'Feather-light low-cuts with responsive cushioning for quick guards.',
-                'price' => 2199.00,
-                'stock' => 12,
-                'photo' => 'https://kickscrew.com/cdn/shop/files/main-square_d7e70429-f9aa-479d-85ac-9614f7488f5d.jpg',
+                'description' => 'Lightweight low-cut basketball shoes for quick movements.',
+                'price' => 2299.00,
+                'stock' => 25,
+                'photo' => 'https://images.pexels.com/photos/4695156/pexels-photo-4695156.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Mid-Cut All-Court Shoes',
-                'description' => 'Balanced mid-cut support with a grippy herringbone outsole.',
-                'price' => 2299.00,
-                'stock' => 14,
-                'photo' => 'https://kickscrew.com/cdn/shop/files/main-square_d7e70429-f9aa-479d-85ac-9614f7488f5d.jpg',
+                'description' => 'Versatile mid-cut shoes suitable for indoor and outdoor basketball courts.',
+                'price' => 2399.00,
+                'stock' => 20,
+                'photo' => 'https://images.pexels.com/photos/39301567/pexels-photo-39301567.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Training & Run Shoes',
-                'description' => 'Multi-sport trainer for conditioning drills, sprints, and gym work.',
+                'description' => 'Multi-purpose athletic shoes for basketball training and running.',
                 'price' => 1999.00,
-                'stock' => 16,
-                'photo' => 'https://kickscrew.com/cdn/shop/files/main-square_d7e70429-f9aa-479d-85ac-9614f7488f5d.jpg',
+                'stock' => 30,
+                'photo' => 'https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Kids Basketball Shoes',
-                'description' => 'Durable, easy-to-wear shoes sized for young ballers.',
-                'price' => 1499.00,
-                'stock' => 18,
-                'photo' => 'https://kickscrew.com/cdn/shop/files/main-square_d7e70429-f9aa-479d-85ac-9614f7488f5d.jpg',
+                'description' => 'Comfortable basketball shoes designed for young players.',
+                'price' => 1599.00,
+                'stock' => 25,
+                'photo' => 'https://images.pexels.com/photos/15693841/pexels-photo-15693841.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
                 'name' => 'Slip-On Court Sneakers',
-                'description' => 'Lace-free slip-ons for fast transitions between bench and court.',
-                'price' => 1799.00,
-                'stock' => 10,
-                'photo' => 'https://kickscrew.com/cdn/shop/files/main-square_d7e70429-f9aa-479d-85ac-9614f7488f5d.jpg',
-            ],
-
-            // ---------- Socks ----------
-            [
-                'name' => 'Basketball Crew Socks (3-Pack)',
-                'description' => 'Cushioned crew socks with arch support — perfect for training and game days.',
-                'price' => 299.00,
-                'stock' => 60,
-                'photo' => 'https://fanatics.frgimages.com/memphis-grizzlies/unisex-stance-memphis-grizzlies-prep-stripe-crew-sock_ss5_p-201066943%2Bu-lrb7zclgxtmqqucqouzn%2Bv-jhzpzlgus9gwmgsqzi3h.jpg?_hv=2&w=900',
-            ],
-            [
-                'name' => 'No-Show Low-Cut Socks (5-Pack)',
-                'description' => 'Invisible-fit low socks that stay put inside your shoes.',
-                'price' => 249.00,
-                'stock' => 55,
-                'photo' => 'https://fanatics.frgimages.com/memphis-grizzlies/unisex-stance-memphis-grizzlies-prep-stripe-crew-sock_ss5_p-201066943%2Bu-lrb7zclgxtmqqucqouzn%2Bv-jhzpzlgus9gwmgsqzi3h.jpg?_hv=2&w=900',
-            ],
-            [
-                'name' => 'Ankle Compression Socks',
-                'description' => 'Graduated compression for better blood flow during long sessions.',
-                'price' => 259.00,
-                'stock' => 48,
-                'photo' => 'https://fanatics.frgimages.com/memphis-grizzlies/unisex-stance-memphis-grizzlies-prep-stripe-crew-sock_ss5_p-201066943%2Bu-lrb7zclgxtmqqucqouzn%2Bv-jhzpzlgus9gwmgsqzi3h.jpg?_hv=2&w=900',
-            ],
-            [
-                'name' => 'Knee-High Game Socks',
-                'description' => 'Classic knee-high game socks with a padded footbed.',
-                'price' => 279.00,
-                'stock' => 42,
-                'photo' => 'https://fanatics.frgimages.com/memphis-grizzlies/unisex-stance-memphis-grizzlies-prep-stripe-crew-sock_ss5_p-201066943%2Bu-lrb7zclgxtmqqucqouzn%2Bv-jhzpzlgus9gwmgsqzi3h.jpg?_hv=2&w=900',
-            ],
-            [
-                'name' => 'Quarter Performance Socks',
-                'description' => 'Moisture-wicking quarter socks with reinforced heel and toe.',
-                'price' => 199.00,
-                'stock' => 65,
-                'photo' => 'https://fanatics.frgimages.com/memphis-grizzlies/unisex-stance-memphis-grizzlies-prep-stripe-crew-sock_ss5_p-201066943%2Bu-lrb7zclgxtmqqucqouzn%2Bv-jhzpzlgus9gwmgsqzi3h.jpg?_hv=2&w=900',
-            ],
-
-            // ---------- Balls ----------
-            [
-                'name' => 'Official Size 7 Game Ball',
-                'description' => 'FIBA-grade composite leather ball with deep channels for better grip.',
-                'price' => 1499.00,
-                'stock' => 20,
-                'photo' => 'https://ec.treasure-f.com/images/5503002371598863/1500/5503002371598863_01_3143w.jpeg',
-            ],
-            [
-                'name' => 'Size 5 Youth Ball',
-                'description' => 'Lighter, smaller ball sized for ages 9-11 learning the game.',
-                'price' => 899.00,
-                'stock' => 25,
-                'photo' => 'https://ec.treasure-f.com/images/5503002371598863/1500/5503002371598863_01_3143w.jpeg',
-            ],
-            [
-                'name' => 'Indoor/Outdoor Rubber Ball',
-                'description' => 'Tough rubber cover that stands up to concrete courts.',
-                'price' => 799.00,
-                'stock' => 28,
-                'photo' => 'https://ec.treasure-f.com/images/5503002371598863/1500/5503002371598863_01_3143w.jpeg',
-            ],
-            [
-                'name' => 'Mini Basketball (Souvenir)',
-                'description' => 'Mini hoops ball — great for desks, displays, and collecting.',
-                'price' => 399.00,
-                'stock' => 40,
-                'photo' => 'https://ec.treasure-f.com/images/5503002371598863/1500/5503002371598863_01_3143w.jpeg',
-            ],
-
-            // ---------- Training Tops ----------
-            [
-                'name' => 'Compression Long Sleeve Shirt',
-                'description' => 'Moisture-wicking compression top that keeps you cool and dry during the game.',
-                'price' => 650.00,
+                'description' => 'Easy-to-wear court sneakers with a lightweight athletic design.',
+                'price' => 1399.00,
                 'stock' => 30,
-                'photo' => 'https://static.golfonline.co.uk/media/img/1257468_001.857x1000.jpg',
+                'photo' => 'https://images.pexels.com/photos/4053668/pexels-photo-4053668.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
+            // ==============================================================
+            // SOCKS
+            // ==============================================================
+
             [
-                'name' => 'Compression Short Sleeve Tee',
-                'description' => 'Second-skin fit tee for layering under jerseys or solo gym sessions.',
-                'price' => 499.00,
-                'stock' => 32,
-                'photo' => 'https://static.golfonline.co.uk/media/img/1257468_001.857x1000.jpg',
+                'name' => 'Performance Basketball Socks',
+                'description' => 'Breathable athletic socks designed for basketball players.',
+                'price' => 199.00,
+                'stock' => 80,
+                'photo' => 'https://images.pexels.com/photos/5746098/pexels-photo-5746098.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
-                'name' => 'Dri-Fit Training Tank Top',
-                'description' => 'Sleeveless tank with open armholes for unrestricted shooting motion.',
-                'price' => 449.00,
-                'stock' => 34,
-                'photo' => 'https://static.golfonline.co.uk/media/img/1257468_001.857x1000.jpg',
+                'name' => 'Athletic Sports Socks',
+                'description' => 'Comfortable sports socks suitable for training and everyday use.',
+                'price' => 179.00,
+                'stock' => 75,
+                'photo' => 'https://images.pexels.com/photos/7318754/pexels-photo-7318754.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
-                'name' => 'Practice Tee - Crew Neck',
-                'description' => 'Soft crew-neck practice tee for everyday drills and workouts.',
+                'name' => 'Compression Sports Socks',
+                'description' => 'Supportive compression socks designed for active athletes.',
+                'price' => 249.00,
+                'stock' => 60,
+                'photo' => 'https://images.pexels.com/photos/7238948/pexels-photo-7238948.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Basketball Crew Socks',
+                'description' => 'Classic crew socks with a comfortable basketball-inspired design.',
+                'price' => 189.00,
+                'stock' => 70,
+                'photo' => 'https://images.pexels.com/photos/5746037/pexels-photo-5746037.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Premium Athletic Socks',
+                'description' => 'Soft and durable athletic socks for everyday basketball sessions.',
+                'price' => 229.00,
+                'stock' => 65,
+                'photo' => 'https://images.pexels.com/photos/5746026/pexels-photo-5746026.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            // ==============================================================
+            // BASKETBALLS
+            // ==============================================================
+
+            [
+                'name' => 'Official Size Basketball',
+                'description' => 'Official-size basketball designed for competitive play and training.',
+                'price' => 899.00,
+                'stock' => 30,
+                'photo' => 'https://images.pexels.com/photos/12954258/pexels-photo-12954258.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Indoor Outdoor Basketball',
+                'description' => 'Durable basketball suitable for both indoor and outdoor courts.',
+                'price' => 799.00,
+                'stock' => 35,
+                'photo' => 'https://images.pexels.com/photos/26705108/pexels-photo-26705108.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Court Training Basketball',
+                'description' => 'Reliable basketball for everyday drills and practice sessions.',
+                'price' => 699.00,
+                'stock' => 40,
+                'photo' => 'https://images.pexels.com/photos/8084767/pexels-photo-8084767.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Mini Basketball',
+                'description' => 'Compact mini basketball suitable for casual play and beginners.',
                 'price' => 399.00,
                 'stock' => 45,
-                'photo' => 'https://static.golfonline.co.uk/media/img/1257468_001.857x1000.jpg',
-            ],
-            [
-                'name' => 'Hooded Training Top',
-                'description' => 'Warm hooded pullover for pre-game warm-ups and cool mornings.',
-                'price' => 899.00,
-                'stock' => 18,
-                'photo' => 'https://static.golfonline.co.uk/media/img/1257468_001.857x1000.jpg',
+                'photo' => 'https://images.pexels.com/photos/10913962/pexels-photo-10913962.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
 
-            // ---------- Outerwear ----------
+            // ==============================================================
+            // TRAINING TOPS
+            // ==============================================================
+
+            [
+                'name' => 'Basketball Compression Shirt',
+                'description' => 'Stretch compression shirt designed for basketball training.',
+                'price' => 499.00,
+                'stock' => 40,
+                'photo' => 'https://images.pexels.com/photos/16085236/pexels-photo-16085236.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Performance Compression Top',
+                'description' => 'Athletic compression top providing a fitted training feel.',
+                'price' => 549.00,
+                'stock' => 35,
+                'photo' => 'https://images.pexels.com/photos/20110495/pexels-photo-20110495.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Basketball Tank Top',
+                'description' => 'Sleeveless athletic top for basketball workouts and training.',
+                'price' => 399.00,
+                'stock' => 45,
+                'photo' => 'https://images.pexels.com/photos/20400632/pexels-photo-20400632.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Training Performance Shirt',
+                'description' => 'Lightweight training shirt for workouts and basketball practice.',
+                'price' => 449.00,
+                'stock' => 40,
+                'photo' => 'https://images.pexels.com/photos/8554993/pexels-photo-8554993.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Training Pullover Hoodie',
+                'description' => 'Comfortable athletic hoodie for warm-ups and outdoor training.',
+                'price' => 699.00,
+                'stock' => 30,
+                'photo' => 'https://images.pexels.com/photos/16976087/pexels-photo-16976087.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            // ==============================================================
+            // OUTERWEAR
+            // ==============================================================
+
             [
                 'name' => 'Basketball Warm-Up Jacket',
-                'description' => 'Full-zip windbreaker-style jacket with team colors and cuffed sleeves.',
-                'price' => 1199.00,
-                'stock' => 15,
-                'photo' => 'https://www.superkicks.in/cdn/shop/files/1-2023-12-12T140619.561.jpg?crop=center&height=900&v=1702370426&width=900',
-            ],
-            [
-                'name' => 'Track Pants',
-                'description' => 'Tapered track pants with elastic cuffs and zip pockets.',
+                'description' => 'Lightweight warm-up jacket designed for pre-game sessions.',
                 'price' => 899.00,
-                'stock' => 22,
-                'photo' => 'https://www.superkicks.in/cdn/shop/files/1-2023-12-12T140619.561.jpg?crop=center&height=900&v=1702370426&width=900',
-            ],
-            [
-                'name' => 'Reversible Warm-Up Suit Set',
-                'description' => 'Jacket and pants set that reverses between two colors.',
-                'price' => 1899.00,
-                'stock' => 10,
-                'photo' => 'https://www.superkicks.in/cdn/shop/files/1-2023-12-12T140619.561.jpg?crop=center&height=900&v=1702370426&width=900',
+                'stock' => 25,
+                'photo' => 'https://images.pexels.com/photos/11000094/pexels-photo-11000094.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
 
-            // ---------- Accessories ----------
             [
-                'name' => 'Headband (2-Pack)',
-                'description' => 'Sweat-wicking terry headbands that stay in place.',
-                'price' => 149.00,
-                'stock' => 70,
-                'photo' => 'https://down-tw.img.susercontent.com/file/tw-11134207-7rash-m142c8bnfftk22',
+                'name' => 'Sports Track Pants',
+                'description' => 'Comfortable athletic track pants for training and warm-ups.',
+                'price' => 749.00,
+                'stock' => 30,
+                'photo' => 'https://images.pexels.com/photos/3207453/pexels-photo-3207453.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
-                'name' => 'Wristbands (2-Pack)',
-                'description' => 'Classic absorbent wristbands for wiping sweat mid-play.',
-                'price' => 149.00,
-                'stock' => 70,
-                'photo' => 'https://cdn1.basket4ballers.com/174374-large_default/poignets-eponges-nike-elite-white-n1006700101.jpg',
+                'name' => 'Basketball Warm-Up Suit',
+                'description' => 'Complete warm-up outfit designed for teams and athletes.',
+                'price' => 1299.00,
+                'stock' => 20,
+                'photo' => 'https://images.pexels.com/photos/3764534/pexels-photo-3764534.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
+            // ==============================================================
+            // ACCESSORIES
+            // ==============================================================
+
             [
-                'name' => 'Knee Sleeve - Single',
-                'description' => 'Open-patella support sleeve for knees under stress.',
+                'name' => 'Performance Headband',
+                'description' => 'Sweat-wicking athletic headband for basketball sessions.',
+                'price' => 149.00,
+                'stock' => 80,
+                'photo' => 'https://images.pexels.com/photos/5275252/pexels-photo-5275252.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Basketball Wristbands',
+                'description' => 'Comfortable wristbands designed to help manage sweat during games.',
+                'price' => 129.00,
+                'stock' => 80,
+                'photo' => 'https://images.pexels.com/photos/1103829/pexels-photo-1103829.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Knee Compression Sleeve',
+                'description' => 'Stretch knee sleeve designed for athletic support and comfort.',
                 'price' => 249.00,
                 'stock' => 50,
-                'photo' => 'https://bauerfeind.com.au/cdn/shop/products/nba-sports-compression-knee-support.jpg',
+                'photo' => 'https://images.pexels.com/photos/38121344/pexels-photo-38121344.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
-                'name' => 'Ankle Brace Support',
-                'description' => 'Figure-eight style ankle brace for sprain protection.',
-                'price' => 349.00,
-                'stock' => 30,
-                'photo' => 'https://zamst.ca/cdn/shop/products/a2-dx_09_1800x1800.jpg?v=1677299755',
+                'name' => 'Ankle Support Sleeve',
+                'description' => 'Lightweight ankle support sleeve for training and court activities.',
+                'price' => 229.00,
+                'stock' => 50,
+                'photo' => 'https://images.pexels.com/photos/7991959/pexels-photo-7991959.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
-                'name' => 'Shooting Sleeve',
-                'description' => 'Compression arm sleeve that keeps your shooting arm warm.',
+                'name' => 'Basketball Arm Sleeve',
+                'description' => 'Athletic arm sleeve designed for basketball players.',
                 'price' => 199.00,
-                'stock' => 55,
-                'photo' => 'https://cdn.shopify.com/s/files/1/1956/9819/products/326962-NIKE-PRO-DRI-FIT-4.0-WHITE-ARM-SLEEVE-N.100.0771.101_1024x1024%402x.jpg?v=1580496414',
+                'stock' => 60,
+                'photo' => 'https://images.pexels.com/photos/7322505/pexels-photo-7322505.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
             [
-                'name' => 'Finger Sleeve (3-Pack)',
-                'description' => 'Protects fingers from jams and bruises during rebounding.',
+                'name' => 'Finger Compression Sleeve',
+                'description' => 'Lightweight finger sleeve for added comfort during basketball activities.',
+                'price' => 99.00,
+                'stock' => 70,
+                'photo' => 'https://images.pexels.com/photos/6203700/pexels-photo-6203700.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Sports Water Bottle',
+                'description' => 'Reusable sports water bottle for training and game days.',
+                'price' => 249.00,
+                'stock' => 50,
+                'photo' => 'https://images.pexels.com/photos/5274535/pexels-photo-5274535.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Microfiber Sports Towel',
+                'description' => 'Quick-drying microfiber towel for workouts and basketball games.',
                 'price' => 179.00,
                 'stock' => 60,
-                'photo' => 'https://images.prom.ua/4270181657_w1280_h640_4270181657.jpg',
-            ],
-            [
-                'name' => 'Basketball Water Bottle',
-                'description' => 'Leak-proof 750ml squeeze bottle with a carry loop.',
-                'price' => 249.00,
-                'stock' => 40,
-                'photo' => 'https://fanatics.frgimages.com/golden-state-warriors/golden-state-warriors-24oz-personalized-jr-thirst-water-bottle_pi4456000_ff_4456584-c39c9eb63557f5ba17c0_full.jpg?_hv=2&w=900',
-            ],
-            [
-                'name' => 'Microfiber Towel - Hoop Design',
-                'description' => 'Compact quick-dry towel with a basketball print.',
-                'price' => 199.00,
-                'stock' => 35,
-                'photo' => 'https://ec.treasure-f.com/images/5503002371598863/1500/5503002371598863_01_3143w.jpeg',
-            ],
-            [
-                'name' => 'Compression Arm Sleeves (2-Pack)',
-                'description' => 'UV-protective compression sleeves for outdoor courts.',
-                'price' => 299.00,
-                'stock' => 40,
-                'photo' => 'https://cdn.shopify.com/s/files/1/1956/9819/products/326962-NIKE-PRO-DRI-FIT-4.0-WHITE-ARM-SLEEVE-N.100.0771.101_1024x1024%402x.jpg?v=1580496414',
+                'photo' => 'https://images.pexels.com/photos/6455950/pexels-photo-6455950.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
 
-            // ---------- Bags & Caps ----------
             [
-                'name' => 'Team Duffel Bag',
-                'description' => 'Spacious duffel with a separate ventilated shoe compartment.',
-                'price' => 1299.00,
-                'stock' => 12,
-                'photo' => 'https://www.prodirectsport.com/cdn/shop/files/1041403_main.jpg?v=1788068151&width=900',
+                'name' => 'Compression Arm Sleeve',
+                'description' => 'Stretch compression sleeve suitable for basketball and training.',
+                'price' => 219.00,
+                'stock' => 55,
+                'photo' => 'https://images.pexels.com/photos/18003717/pexels-photo-18003717.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
+
+            // ==============================================================
+            // BAGS & CAPS
+            // ==============================================================
+
             [
-                'name' => 'Backpack - Ball Compartment',
-                'description' => 'Carry your ball, shoes, and gear in one organized backpack.',
-                'price' => 999.00,
-                'stock' => 15,
-                'photo' => 'https://i.ebayimg.com/images/g/paYAAeSwfnBpUnv6/s-l1200.jpg',
-            ],
-            [
-                'name' => 'Ball Carry Net',
-                'description' => 'Classic mesh net that keeps your ball at your side.',
-                'price' => 349.00,
-                'stock' => 30,
-                'photo' => 'https://ec.treasure-f.com/images/5503002371598863/1500/5503002371598863_01_3143w.jpeg',
-            ],
-            [
-                'name' => 'Snapback Cap - Hoop Logo',
-                'description' => 'Adjustable snapback with embroidered hoop logo.',
-                'price' => 449.00,
+                'name' => 'Basketball Duffel Bag',
+                'description' => 'Spacious sports duffel bag for shoes, jerseys, and training gear.',
+                'price' => 899.00,
                 'stock' => 25,
-                'photo' => 'https://static.nike.com/a/images/t_PDP_144_v1/f_auto%2Cq_auto%3Aeco%2Cu_126ab356-44d8-4a06-89b4-fcdcc8df0245%2Cc_scale%2Cfl_relative%2Cw_1.0%2Ch_1.0%2Cfl_layer_apply/59728077-6610-4016-92a4-7a146523af0c/U%2BJ%2BDF%2BCLUB%2BCAP%2BUS%2BCB.png',
+                'photo' => 'https://images.pexels.com/photos/5384401/pexels-photo-5384401.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Basketball Training Backpack',
+                'description' => 'Athletic backpack designed for carrying basketball essentials.',
+                'price' => 999.00,
+                'stock' => 25,
+                'photo' => 'https://images.pexels.com/photos/6764357/pexels-photo-6764357.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Basketball Ball Bag',
+                'description' => 'Dedicated ball bag for convenient basketball transport.',
+                'price' => 499.00,
+                'stock' => 30,
+                'photo' => 'https://images.pexels.com/photos/8554900/pexels-photo-8554900.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+            ],
+
+            [
+                'name' => 'Sports Snapback Cap',
+                'description' => 'Classic snapback cap with a sporty basketball-inspired style.',
+                'price' => 299.00,
+                'stock' => 45,
+                'photo' => 'https://images.pexels.com/photos/6963097/pexels-photo-6963097.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
             ],
         ];
-        foreach ($products as $item) {
-            $existing = Product::where('name', $item['name'])->first();
 
-            if ($existing) {
-                // Refresh product details and image URL.
-                $existing->update([
-                    'description' => $item['description'],
-                    'price' => $item['price'],
-                    'stock' => $item['stock'],
-                    'photo' => $item['photo'],
-                ]);
-            } else {
-                Product::create($item);
-            }
+        /*
+        |--------------------------------------------------------------------------
+        | Insert / Update Products
+        |--------------------------------------------------------------------------
+        */
+
+        foreach ($products as $product) {
+            Product::updateOrCreate(
+                ['name' => $product['name']],
+                $product
+            );
         }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Success Message
+        |--------------------------------------------------------------------------
+        */
+
+        $this->command->info(
+            'HoopShop seeded successfully: '
+            . count($products)
+            . ' products.'
+        );
     }
 }
-
-#
