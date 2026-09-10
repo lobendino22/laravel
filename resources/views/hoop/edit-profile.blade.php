@@ -13,8 +13,9 @@
     .profile-form .form-group { margin-bottom: 18px; }
     .profile-form label { display: block; font-size: 0.9rem; font-weight: 600; color: #1c2024; margin-bottom: 8px; }
     .profile-form label .required { color: #e94560; }
-    .profile-form input { width: 100%; padding: 13px 15px; border: 1px solid #e5e7eb; border-radius: 10px; font-size: 1rem; transition: all 0.2s; background: #f8f9fa; }
-    .profile-form input:focus { outline: none; border-color: #1ab394; box-shadow: 0 0 0 3px rgba(26,179,148,0.1); background: #fff; }
+    .profile-form input, .profile-form textarea { width: 100%; padding: 13px 15px; border: 1px solid #e5e7eb; border-radius: 10px; font-size: 1rem; transition: all 0.2s; background: #f8f9fa; }
+    .profile-form input:focus, .profile-form textarea:focus { outline: none; border-color: #1ab394; box-shadow: 0 0 0 3px rgba(26,179,148,0.1); background: #fff; }
+    .profile-form textarea { resize: vertical; font-family: inherit; }
     .profile-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .profile-actions { display: flex; gap: 12px; margin-top: 26px; padding-top: 22px; border-top: 2px solid #e5e7eb; }
     .profile-btn { padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.2s; border: none; text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
@@ -85,6 +86,24 @@
                 @error('email')
                     <span style="color: #e94560; font-size: 0.8rem; margin-top: 4px; display: block;">{{ $message }}</span>
                 @enderror
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Cellphone Number</label>
+                    <input type="text" name="phone" id="phone" value="{{ old('phone', $user->phone) }}" placeholder="09xx xxx xxxx">
+                    @error('phone')
+                        <span style="color: #e94560; font-size: 0.8rem; margin-top: 4px; display: block;">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Delivery Address</label>
+                    <input type="text" name="address" id="address" value="{{ old('address', $user->address) }}" placeholder="Street, Barangay, City">
+                    @error('address')
+                        <span style="color: #e94560; font-size: 0.8rem; margin-top: 4px; display: block;">{{ $message }}</span>
+                    @enderror
+                </div>
             </div>
 
             <div class="profile-actions">

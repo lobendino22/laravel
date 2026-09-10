@@ -74,6 +74,7 @@ Route::prefix('hoop-shop')->group(function () {
     Route::middleware(['no-cache', 'client'])->group(function () {
         Route::get('/dashboard', [ShopController::class, 'dashboard'])->name('hoop.dashboard');
         Route::get('/checkout', [ShopController::class, 'showCheckout'])->name('hoop.checkout');
+        Route::post('/checkout/start', [ShopController::class, 'startCheckout'])->name('hoop.checkout.start');
         Route::post('/checkout', [ShopController::class, 'placeOrder'])->name('hoop.checkout.place');
         Route::get('/my-orders', [ShopController::class, 'myOrders'])->name('hoop.orders');
     });

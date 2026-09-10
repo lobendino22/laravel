@@ -90,10 +90,55 @@ class ShopController extends Controller
 
     // ---------- Checkout ----------
 
+    // Start checkout with the items selected on the cart page (client only)
+    public function startCheckout(Request $request)
+    {
+        $selected = array_map('intval', (array) $request->input('selected', []));
+
+        if (empty($selected)) {
+            return redirect()->route('hoop.cart')->with('error', 'Select at least one item to check out.');
+        }
+
+        // Apply any quantity changes submitted with the form
+        $cart = session()->get('cart', []);
+        foreach ($request->input('qty', []) as $productId => $qty) {
+            $product = Product::find($productId);
+            if (! $product) {
+                unset($cart[$productId]);
+                continue;
+            }
+            $qty = (int) $qty;
+            if ($qty <= 0) {
+                unset($cart[$productId]);
+            } else {
+                $cart[$productId] = min($qty, $product->stock);
+            }
+        }
+        session()->put('cart', $cart);
+
+        // Stage only the selected items for checkout
+        $items = collect($this->cartItems())
+            ->filter(fn ($item) => in_array($item['product']->id, $selected))
+            ->values()
+            ->all();
+
+        if (empty($items)) {
+            return redirect()->route('hoop.cart')->with('error', 'Select at least one item to check out.');
+        }
+
+        session()->put('checkout_items', $items);
+
+        return redirect()->route('hoop.checkout');
+    }
+
     // Show checkout form (client only)
     public function showCheckout()
     {
-        $items = $this->cartItems();
+        $items = session('checkout_items', []);
+
+        if (empty($items)) {
+            $items = $this->cartItems();
+        }
 
         if (empty($items)) {
             return redirect()->route('hoop.cart')->with('error', 'Your cart is empty.');
@@ -105,7 +150,11 @@ class ShopController extends Controller
     // Place the order
     public function placeOrder(Request $request)
     {
-        $items = $this->cartItems();
+        $items = session('checkout_items', []);
+
+        if (empty($items)) {
+            $items = $this->cartItems();
+        }
 
         if (empty($items)) {
             return redirect()->route('hoop.cart')->with('error', 'Your cart is empty.');
@@ -150,7 +199,14 @@ class ShopController extends Controller
             return $order;
         });
 
-        session()->forget('cart');
+        // Remove only the ordered items, keeping unchecked items in the cart
+        $orderedIds = collect($items)->pluck('product.id')->all();
+        $cart = session()->get('cart', []);
+        foreach ($orderedIds as $id) {
+            unset($cart[$id]);
+        }
+        session()->put('cart', $cart);
+        session()->forget('checkout_items');
 
         return redirect()->route('hoop.orders')
             ->with('success', 'Order #' . $order->id . ' placed successfully!');
