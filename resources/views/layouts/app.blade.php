@@ -323,7 +323,7 @@
             </div>
 
             <!-- Hoop Shop Auth Links -->
-            <div class="top-auth-links" style="padding: 10px 24px; background: #f8fafc; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div class="top-auth-links" style="padding: 10px 24px; background: #201d19; border-bottom: 1px solid #3a352e; display: flex; align-items: center; flex-wrap: wrap; gap: 10px;">
                 @auth
                     @if(auth()->user()->role === 'admin')
                         <a href="{{ route('hoop.admin.dashboard') }}" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> Admin</a>
@@ -336,36 +336,36 @@
                         @endif
                     </a>
                     <div class="user-dropdown" style="position: relative; display: inline-flex; align-items: center;">
-                        <button id="userDropdownBtn" type="button" style="background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: #1c2024; display: inline-flex; align-items: center; gap: 8px;">
+                        <button id="userDropdownBtn" type="button" style="background: #26231f; border: 1px solid #3a352e; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: #f2ede3; display: inline-flex; align-items: center; gap: 8px;">
                             <span style="display: inline-flex; align-items: center; gap: 8px;">
-                                <span id="userAvatarPlace" style="width: 26px; height: 26px; border-radius: 50%; background: #1ab394; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; overflow: hidden;">
+                                <span id="userAvatarPlace" style="width: 26px; height: 26px; border-radius: 50%; background: #e2611d; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; overflow: hidden;">
                                     {{ mb_strimwidth(auth()->user()->name ?? '', 0, 2, '') }}
                                 </span>
                                 <span id="userNameDisplay" style="font-size: 0.9rem; white-space: nowrap;">{{ auth()->user()->name ?? 'User' }}</span>
                             </span>
-                            <i id="userCaret" class="fa fa-chevron-down" style="font-size: 0.7rem; color: #6b7280; transition: transform 0.2s;"></i>
+                            <i id="userCaret" class="fa fa-chevron-down" style="font-size: 0.7rem; color: #9a9186; transition: transform 0.2s;"></i>
                         </button>
-                        <div id="userDropdownMenu" class="user-dropdown-menu" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 6px; background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.12); min-width: 220px; z-index: 2000; overflow: hidden;">
-                            <div style="padding: 14px 16px; border-bottom: 1px solid #f3f4f6; background: #f8fafc;">
-                                <div style="font-weight: 700; font-size: 1rem; color: #1c2024;">{{ auth()->user()->name ?? 'User' }}</div>
-                                <div style="font-size: 0.82rem; color: #6b7280; margin-top: 2px;">{{ auth()->user()->email ?? '' }}</div>
+                        <div id="userDropdownMenu" class="user-dropdown-menu" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 6px; background: #26231f; border: 1px solid #3a352e; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.5); min-width: 220px; z-index: 2000; overflow: hidden;">
+                            <div style="padding: 14px 16px; border-bottom: 1px solid #3a352e; background: #201d19;">
+                                <div style="font-weight: 700; font-size: 1rem; color: #f2ede3;">{{ auth()->user()->name ?? 'User' }}</div>
+                                <div style="font-size: 0.82rem; color: #9a9186; margin-top: 2px;">{{ auth()->user()->email ?? '' }}</div>
                             </div>
-                            <a href="{{ route('hoop.profile') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #1c2024; text-decoration: none; font-size: 0.9rem; transition: background 0.2s;" onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background='#fff'">
-                                <i class="fa fa-user-edit" style="color: #e94560; font-size: 0.95rem;"></i> Edit Profile
+                            <a href="{{ route('hoop.profile') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #f2ede3; text-decoration: none; font-size: 0.9rem; transition: background 0.2s;" onmouseover="this.style.background='#2e2a25'" onmouseout="this.style.background='#26231f'">
+                                <i class="fa fa-user-edit" style="color: #e2611d; font-size: 0.95rem;"></i> Edit Profile
                             </a>
                             @if(auth()->user()->role === 'client')
-                                <a href="{{ route('hoop.orders') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #1c2024; text-decoration: none; font-size: 0.9rem; transition: background 0.2s;" onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background='#fff'">
-                                    <i class="fa fa-truck" style="color: #1ab394; font-size: 0.95rem;"></i> My Orders
+                                <a href="{{ route('hoop.orders') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #f2ede3; text-decoration: none; font-size: 0.9rem; transition: background 0.2s;" onmouseover="this.style.background='#2e2a25'" onmouseout="this.style.background='#26231f'">
+                                    <i class="fa fa-truck" style="color: #e2611d; font-size: 0.95rem;"></i> My Orders
                                 </a>
                             @else
-                                <a href="{{ route('hoop.admin.dashboard') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #1c2024; text-decoration: none; font-size: 0.9rem; transition: background 0.2s;" onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background='#fff'">
-                                    <i class="fa fa-cog" style="color: #1ab394; font-size: 0.95rem;"></i> Admin Dashboard
+                                <a href="{{ route('hoop.admin.dashboard') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #f2ede3; text-decoration: none; font-size: 0.9rem; transition: background 0.2s;" onmouseover="this.style.background='#2e2a25'" onmouseout="this.style.background='#26231f'">
+                                    <i class="fa fa-cog" style="color: #e2611d; font-size: 0.95rem;"></i> Admin Dashboard
                                 </a>
                             @endif
-                            <div style="border-top: 1px solid #f3f4f6;">
+                            <div style="border-top: 1px solid #3a352e;">
                                 <form method="POST" action="{{ auth()->user()->role === 'admin' ? route('hoop.admin.logout') : route('hoop.logout') }}" style="display: block;">
                                     @csrf
-                                    <button type="submit" style="width: 100%; padding: 12px 16px; background: none; border: none; color: #6b7280; text-decoration: none; font-size: 0.9rem; cursor: pointer; text-align: left; transition: color 0.2s; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.color='#e94560'" onmouseout="this.style.color='#6b7280'">
+                                    <button type="submit" style="width: 100%; padding: 12px 16px; background: none; border: none; color: #9a9186; text-decoration: none; font-size: 0.9rem; cursor: pointer; text-align: left; transition: color 0.2s; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.color='#c96a54'" onmouseout="this.style.color='#9a9186'">
                                         <i class="fa fa-sign-out" style="font-size: 0.95rem;"></i> Logout
                                     </button>
                                 </form>

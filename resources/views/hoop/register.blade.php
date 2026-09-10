@@ -1,35 +1,53 @@
 @extends('layouts.app')
 @section('content')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-    body.register-page {
-        background: linear-gradient(135deg, #1ab394 0%, #17987e 100%) !important;
+    .register-page {
+        font-family: 'Inter', system-ui, sans-serif;
+        color: #f2ede3;
+        background: #1c1a17;
         min-height: 100vh;
     }
-    .register-container { max-width: 420px; margin: 0 auto; padding: 40px 20px; }
+    .register-container { max-width: 420px; margin: 0 auto; padding: 40px 20px 60px; }
     .register-brand { text-align: center; margin-bottom: 30px; }
-    .register-brand img { height: 50px; width: auto; margin-bottom: 10px; }
-    .register-brand h1 { font-weight: 800; letter-spacing: 3px; color: #ffffff; margin: 12px 0 4px; font-size: 2.25rem; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-    .register-brand p { color: rgba(255,255,255,0.85); font-size: 1rem; margin: 0; }
-    .register-card { border: none; border-radius: 16px; background: #ffffff; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .register-brand img { height: 46px; width: auto; margin-bottom: 8px; }
+    .register-brand h1 {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800; letter-spacing: 2px; color: #f2ede3 !important;
+        margin: 10px 0 2px; font-size: 2.25rem;
+    }
+    .register-brand p { color: #9a9186 !important; font-size: 1rem; margin: 0; }
+    .register-card { background: #26231f; border: 1px solid #3a352e; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
     .register-card-body { padding: 36px; }
-    .register-label { font-size: 0.85rem; font-weight: 600; color: #1c2024; margin-bottom: 6px; display: block; }
-    .register-input { width: 100%; padding: 14px 16px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: border-color 0.2s, box-shadow 0.2s; background: #f8f9fa; }
-    .register-input:focus { outline: none; border-color: #1ab394; box-shadow: 0 0 0 3px rgba(26,179,148,0.15); background: #fff; }
-    .register-btn { width: 100%; padding: 14px; border: none; background: linear-gradient(135deg, #1ab394, #17987e); color: #fff; border-radius: 8px; font-weight: 700; font-size: 1rem; letter-spacing: 0.5px; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; margin-top: 8px; }
-    .register-btn:hover { background: linear-gradient(135deg, #17987e, #14856d); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(26,179,148,0.4); color: #fff; }
+    .register-label { font-size: 0.85rem; font-weight: 600; color: #d8d0c2 !important; margin-bottom: 6px; display: block; }
+    .register-input { width: 100%; padding: 14px 16px; border: 1px solid #3a352e; border-radius: 8px; font-size: 1rem; transition: border-color 0.2s, box-shadow 0.2s; background: #1c1a17; color: #f2ede3; }
+    .register-input:focus { outline: none; border-color: #e2611d; box-shadow: 0 0 0 3px rgba(226,97,29,0.15); }
+    .register-input::placeholder { color: #6d655a; opacity: 1; }
+    .register-btn { width: 100%; padding: 14px; border: none; background: #e2611d; color: #fff; border-radius: 8px; font-weight: 700; font-size: 1rem; letter-spacing: 0.5px; transition: transform 0.2s, background 0.2s; cursor: pointer; margin-top: 8px; }
+    .register-btn:hover { background: #c8530f; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(226,97,29,0.35); color: #fff; }
     .register-btn:active { transform: translateY(0); }
+    .register-error { background: rgba(201,106,84,0.12); border: 1px solid rgba(201,106,84,0.4); color: #e8b4a6; border-radius: 8px; padding: 10px 14px; font-size: 0.88rem; margin-bottom: 18px; }
     .register-footer { text-align: center; margin-top: 28px; padding: 0 20px; }
-    .register-footer a { color: #1ab394; font-weight: 600; text-decoration: none; }
-    .register-footer a:hover { text-decoration: underline; }
+    .register-footer a { color: #e2611d; font-weight: 600; text-decoration: none; }
+    .register-footer a:hover { text-decoration: underline; color: #c8530f; }
 </style>
 
-<body class="register-page">
+<div class="register-page">
     <div class="register-container">
         <div class="register-brand">
             <img src="{{ asset('img/hoopzone.png') }}" alt="HoopZone">
             <h1>HOOP ZONE</h1>
             <p>Create your account</p>
         </div>
+
+        @if($errors->any())
+            <div class="register-error">
+                {{ $errors->first() }}
+            </div>
+        @endif
 
         <div class="register-card">
             <div class="register-card-body">
@@ -61,10 +79,10 @@
         </div>
 
         <div class="register-footer">
-            <p style="color:rgba(255,255,255,0.8); font-size:0.95rem; margin-bottom: 0;">
+            <p style="color:#9a9186; font-size:0.95rem; margin-bottom: 0;">
                 Already have an account? <a href="{{ route('hoop.login') }}">Sign in</a>
             </p>
         </div>
     </div>
-</body>
+</div>
 @endsection

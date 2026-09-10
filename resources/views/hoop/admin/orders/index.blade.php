@@ -6,20 +6,22 @@
 
 <style>
     .admin-shell {
-        --ink: #17130f;
-        --paper: #f7f4ee;
-        --line: #e3ddd0;
-        --muted: #6b6459;
+        --ink: #f2ede3;
+        --paper: #1c1a17;
+        --line: #3a352e;
+        --muted: #9a9186;
         --orange: #e2611d;
-        --green: #1f6f4f;
-        --amber: #a5680a;
-        --red: #b3402b;
+        --green: #7ec9a3;
+        --amber: #e0b268;
+        --red: #e0705a;
+        --surface: #26231f;
+        --surface-2: #2e2a25;
         background: var(--paper);
         min-height: 100vh;
         font-family: 'Inter', system-ui, sans-serif;
         color: var(--ink);
     }
-    .admin-header { background: var(--ink); color: #fff; padding: 22px 28px; }
+    .admin-header { background: #14110e; color: #fff; padding: 22px 28px; }
     .admin-header-row { max-width: 1180px; margin: 0 auto; }
     .admin-back-link {
         display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
@@ -30,13 +32,13 @@
 
     .admin-body { max-width: 1180px; margin: 0 auto; padding: 26px 28px 60px; }
     .alert-success {
-        background: #eaf3ee; border: 1px solid #bcdccb; color: var(--green);
+        background: rgba(31,111,79,0.15); border: 1px solid rgba(31,111,79,0.45); color: var(--green);
         border-radius: 6px; padding: 12px 16px; font-size: 0.9rem; margin-bottom: 18px;
     }
 
     .order-list { display: flex; flex-direction: column; gap: 14px; }
     .order-card {
-        background: #fff; border: 1px solid var(--line); border-radius: 8px;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
         padding: 18px 22px; display: grid;
         grid-template-columns: 120px 1.3fr 1.4fr 110px 170px 44px;
         gap: 18px; align-items: start;
@@ -63,7 +65,7 @@
         font-size: 0.85rem;
         font-weight: 600;
         color: var(--ink);
-        background: #fff;
+        background: var(--surface);
         width: 100%;
         cursor: pointer;
     }
@@ -72,11 +74,11 @@
     .icon-btn {
         display: inline-flex; align-items: center; justify-content: center;
         width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--line);
-        color: var(--muted); text-decoration: none; background: #fff;
+        color: var(--muted); text-decoration: none; background: var(--surface);
     }
     .icon-btn:hover { border-color: var(--red); color: var(--red); }
 
-    .empty-state { text-align: center; color: var(--muted); padding: 50px 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+    .empty-state { text-align: center; color: var(--muted); padding: 50px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
 
     @media (max-width: 920px) {
         .order-card { grid-template-columns: 1fr; }
