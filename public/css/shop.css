@@ -1777,7 +1777,7 @@ body {
    FOOTER
    ======================================== */
 .site-footer {
-    background: linear-gradient(180deg, var(--bg-dark) 0%, #151525 100%);
+    background: linear-gradient(180deg, #1c1a17 0%, #151210 100%);
     color: var(--text-muted);
     padding: 80px 24px 30px;
     margin-top: 80px;
@@ -2184,4 +2184,99 @@ body {
 
 #page-wrapper .page-heading .breadcrumb-item a {
   color: #676a6c;
+}
+
+/* ========================================
+   DARK CHROME — single theme everywhere
+   (sidebar, top bar, auth bar, page wrapper)
+   ======================================== */
+body {
+  background: #1c1a17 !important;
+}
+
+/* ---- Sidebar ---- */
+.navbar-static-side {
+  background: #1c1a17 !important;
+  border-right: 1px solid #3a352e;
+}
+.navbar-static-side .nav-header {
+  background: #14110e !important;
+  background-image: none !important;
+  border-bottom: 1px solid #3a352e;
+}
+.navbar-static-side .nav-header a {
+  color: #f2ede3 !important;
+}
+.navbar-static-side .nav-header .text-muted {
+  color: #9a9186 !important;
+}
+.navbar-static-side .nav > li > a {
+  color: #a49c8e !important;
+}
+.navbar-static-side .nav > li > a:hover,
+.navbar-static-side .nav > li > a:focus {
+  color: #f2ede3 !important;
+  background: #26231f !important;
+}
+.navbar-static-side .nav > li.active {
+  background: #26231f !important;
+  border-left: 4px solid #e2611d !important;
+}
+.navbar-static-side .nav > li.active > a {
+  color: #f2ede3 !important;
+}
+.navbar-static-side ul.nav-second-level {
+  background: #201d19 !important;
+}
+.navbar-static-side .nav-second-level li a {
+  color: #a49c8e !important;
+}
+.navbar-static-side .nav-second-level li a:hover,
+.navbar-static-side .nav-second-level li.active > a {
+  color: #f2ede3 !important;
+  background: #26231f !important;
+}
+
+/* ---- Top bar ---- */
+.navbar-static-top {
+  background: #201d19 !important;
+  border-bottom: 1px solid #3a352e;
+}
+.navbar-static-top .minimalize-styl-2 {
+  background: #e2611d !important;
+  border-color: #e2611d !important;
+}
+.navbar-top-links li a {
+  color: #a49c8e !important;
+}
+.navbar-top-links li a:hover,
+.navbar-top-links li a:focus {
+  color: #f2ede3 !important;
+}
+.navbar-form-custom .form-control {
+  background: #14110e !important;
+  border: 1px solid #3a352e !important;
+  color: #f2ede3 !important;
+}
+.navbar-form-custom .form-control::placeholder {
+  color: #6d655a;
+  opacity: 1;
+}
+.welcome-message {
+  color: #9a9186 !important;
+}
+
+/* ---- Page wrapper + auth bar ---- */
+#page-wrapper {
+  background: #1c1a17 !important;
+}
+.top-auth-links {
+  background: #201d19 !important;
+  border-bottom: 1px solid #3a352e !important;
+}
+.top-auth-links a {
+  color: #c9c1b0 !important;
+}
+.top-auth-links a:hover {
+  color: #fff !important;
 }

@@ -6,13 +6,15 @@
 
 <style>
     .admin-shell {
-        --ink: #17130f;
-        --paper: #f7f4ee;
-        --line: #e3ddd0;
-        --muted: #6b6459;
+        --ink: #f2ede3;
+        --paper: #1c1a17;
+        --line: #3a352e;
+        --muted: #9a9186;
         --orange: #e2611d;
-        --green: #1f6f4f;
-        --amber: #a5680a;
+        --green: #7ec9a3;
+        --amber: #e0b268;
+        --surface: #26231f;
+        --surface-2: #2e2a25;
         background: var(--paper);
         min-height: 100vh;
         font-family: 'Inter', system-ui, sans-serif;
@@ -21,7 +23,7 @@
 
     /* ---- Header: scoreboard band ---- */
     .admin-header {
-        background: var(--ink);
+        background: #14110e;
         color: #fff;
         padding: 26px 28px;
         position: relative;
@@ -113,7 +115,7 @@
         gap: 18px;
     }
     .stat-card {
-        background: #fff;
+        background: var(--surface);
         border: 1px solid var(--line);
         border-left: 3px solid var(--accent, var(--orange));
         border-radius: 6px;

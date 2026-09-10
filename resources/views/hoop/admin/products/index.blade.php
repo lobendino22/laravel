@@ -6,21 +6,23 @@
 
 <style>
     .admin-shell {
-        --ink: #17130f;
-        --paper: #f7f4ee;
-        --line: #e3ddd0;
-        --muted: #6b6459;
+        --ink: #f2ede3;
+        --paper: #1c1a17;
+        --line: #3a352e;
+        --muted: #9a9186;
         --orange: #e2611d;
-        --green: #1f6f4f;
-        --amber: #a5680a;
-        --red: #b3402b;
+        --green: #7ec9a3;
+        --amber: #e0b268;
+        --red: #e0705a;
+        --surface: #26231f;
+        --surface-2: #2e2a25;
         background: var(--paper);
         min-height: 100vh;
         font-family: 'Inter', system-ui, sans-serif;
         color: var(--ink);
     }
     .admin-header {
-        background: var(--ink);
+        background: #14110e;
         color: #fff;
         padding: 22px 28px;
     }
@@ -66,8 +68,8 @@
 
     .admin-body { max-width: 1100px; margin: 0 auto; padding: 26px 28px 60px; }
     .alert-success {
-        background: #eaf3ee;
-        border: 1px solid #bcdccb;
+        background: rgba(31,111,79,0.15);
+        border: 1px solid rgba(31,111,79,0.45);
         color: var(--green);
         border-radius: 6px;
         padding: 12px 16px;
@@ -76,7 +78,7 @@
     }
 
     .admin-table-card {
-        background: #fff;
+        background: var(--surface);
         border: 1px solid var(--line);
         border-radius: 8px;
         overflow: hidden;
@@ -97,10 +99,10 @@
         vertical-align: middle;
     }
     table.product-table tr:last-child td { border-bottom: none; }
-    table.product-table tr:hover { background: #fbf9f5; }
+    table.product-table tr:hover { background: var(--surface-2); }
 
     .prod-thumb { width: 54px; height: 54px; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); }
-    .prod-thumb-placeholder { width: 54px; height: 54px; border-radius: 6px; background: #eee8dc; }
+    .prod-thumb-placeholder { width: 54px; height: 54px; border-radius: 6px; background: var(--surface-2); }
 
     .prod-name { font-weight: 600; color: var(--ink); }
     .prod-desc { color: var(--muted); font-size: 0.82rem; margin-top: 2px; }
@@ -127,10 +129,10 @@
         border: 1px solid var(--line);
         color: var(--muted);
         text-decoration: none;
-        background: #fff;
+        background: var(--surface);
         margin-left: 6px;
     }
-    .icon-btn:hover { border-color: #c9c1b0; color: var(--ink); }
+    .icon-btn:hover { border-color: #4a443b; color: var(--ink); }
     .icon-btn.danger:hover { border-color: var(--red); color: var(--red); }
 
     .empty-row { text-align: center; color: var(--muted); padding: 40px 18px; }

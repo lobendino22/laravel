@@ -6,21 +6,23 @@
 
 <style>
     .admin-shell {
-        --ink: #17130f;
-        --paper: #f7f4ee;
-        --line: #e3ddd0;
-        --muted: #6b6459;
+        --ink: #f2ede3;
+        --paper: #1c1a17;
+        --line: #3a352e;
+        --muted: #9a9186;
         --orange: #e2611d;
-        --green: #1f6f4f;
-        --amber: #a5680a;
-        --red: #b3402b;
+        --green: #7ec9a3;
+        --amber: #e0b268;
+        --red: #e0705a;
+        --surface: #26231f;
+        --surface-2: #2e2a25;
         background: var(--paper);
         min-height: 100vh;
         font-family: 'Inter', system-ui, sans-serif;
         color: var(--ink);
     }
     .admin-header {
-        background: var(--ink);
+        background: #14110e;
         color: #fff;
         padding: 22px 28px;
     }
@@ -47,14 +49,14 @@
     }
     .admin-body { max-width: 820px; margin: 0 auto; padding: 28px 28px 60px; }
     .admin-card {
-        background: #fff;
+        background: var(--surface);
         border: 1px solid var(--line);
         border-radius: 8px;
         padding: 28px 30px;
     }
     .alert-danger {
-        background: #fbeae6;
-        border: 1px solid #f0c3b8;
+        background: rgba(201,106,84,0.12);
+        border: 1px solid rgba(201,106,84,0.4);
         color: var(--red);
         border-radius: 6px;
         padding: 12px 16px;
@@ -66,7 +68,7 @@
         display: block;
         font-size: 0.85rem;
         font-weight: 600;
-        color: var(--muted);
+        color: var(--muted) !important;
         margin-bottom: 6px;
     }
     .field .form-control {
@@ -74,8 +76,8 @@
         border-radius: 6px;
         padding: 9px 12px;
         font-size: 0.95rem;
-        color: var(--ink);
-        background: #fff;
+        color: var(--ink) !important;
+        background: var(--surface);
         width: 100%;
         transition: border-color 0.15s, box-shadow 0.15s;
     }
@@ -84,7 +86,7 @@
         border-color: var(--orange);
         box-shadow: 0 0 0 3px rgba(226,97,29,0.12);
     }
-    .field small.text-muted { display: block; margin-top: 6px; font-size: 0.8rem; color: var(--muted); }
+    .field small.text-muted { display: block; margin-top: 6px; font-size: 0.8rem; color: var(--muted) !important; }
 
     .toggle-group { display: flex; gap: 8px; margin-bottom: 12px; }
     .toggle-group input { position: absolute; opacity: 0; pointer-events: none; }
@@ -152,7 +154,7 @@
         font-size: 0.92rem;
         text-decoration: none;
     }
-    .btn-cancel:hover { border-color: #c9c1b0; color: var(--ink); }
+    .btn-cancel:hover { border-color: #4a443b; color: var(--ink); }
 </style>
 
 <div class="admin-shell">

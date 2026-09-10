@@ -6,18 +6,20 @@
 
 <style>
     .admin-shell {
-        --ink: #17130f;
-        --paper: #f7f4ee;
-        --line: #e3ddd0;
-        --muted: #6b6459;
+        --ink: #f2ede3;
+        --paper: #1c1a17;
+        --line: #3a352e;
+        --muted: #9a9186;
         --orange: #e2611d;
-        --red: #b3402b;
+        --red: #e0705a;
+        --surface: #26231f;
+        --surface-2: #2e2a25;
         background: var(--paper);
         min-height: 100vh;
         font-family: 'Inter', system-ui, sans-serif;
         color: var(--ink);
     }
-    .admin-header { background: var(--ink); color: #fff; padding: 22px 28px; }
+    .admin-header { background: #14110e; color: #fff; padding: 22px 28px; }
     .admin-header-row { max-width: 700px; margin: 0 auto; }
     .admin-back-link {
         display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
@@ -27,19 +29,19 @@
     .admin-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.9rem; line-height: 1; }
 
     .admin-body { max-width: 700px; margin: 0 auto; padding: 28px 28px 60px; }
-    .admin-card { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 28px 30px; }
+    .admin-card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 28px 30px; }
 
     .alert-danger {
-        background: #fbeae6; border: 1px solid #f0c3b8; color: var(--red);
+        background: rgba(201,106,84,0.12); border: 1px solid rgba(201,106,84,0.4); color: var(--red);
         border-radius: 6px; padding: 12px 16px; font-size: 0.9rem; margin-bottom: 20px;
     }
 
     .field { margin-bottom: 20px; }
-    .field label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+    .field label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--muted) !important; margin-bottom: 6px; }
     .field label small { font-weight: 400; color: var(--muted); }
     .field .form-control {
         border: 1px solid var(--line); border-radius: 6px; padding: 9px 12px;
-        font-size: 0.95rem; color: var(--ink); background: #fff; width: 100%;
+        font-size: 0.95rem; color: var(--ink) !important; background: var(--surface); width: 100%;
         transition: border-color 0.15s, box-shadow 0.15s;
     }
     .field .form-control:focus {
@@ -59,7 +61,7 @@
         background: transparent; color: var(--ink); border: 1px solid var(--line);
         border-radius: 6px; padding: 10px 20px; font-weight: 600; font-size: 0.92rem; text-decoration: none;
     }
-    .btn-cancel:hover { border-color: #c9c1b0; color: var(--ink); }
+    .btn-cancel:hover { border-color: #4a443b; color: var(--ink); }
 </style>
 
 <div class="admin-shell">
