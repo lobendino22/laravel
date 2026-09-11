@@ -215,9 +215,9 @@
             <div class="stat-card revenue">
                 <div class="stat-label">Revenue</div>
                 <div class="stat-value">&#8369;{{ number_format($revenue, 2) }}</div>
-                <div class="stat-sub">Excludes cancelled orders</div>
+            
                 <a href="#" class="stat-action">
-                    View revenue <i class="fa fa-chevron-right"></i>
+                    
                 </a>
             </div>
         </div>
