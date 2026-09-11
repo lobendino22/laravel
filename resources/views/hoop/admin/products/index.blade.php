@@ -160,6 +160,19 @@
         @endif
 
         <div class="admin-table-card">
+            <form method="GET" action="{{ route('hoop.admin.products') }}" style="margin-bottom: 16px;">
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="text" name="search" value="{{ $query ?? '' }}" placeholder="Search products by name or description..."
+                           style="flex: 1; padding: 10px 14px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface-2); color: var(--ink); font-size: 0.9rem; outline: none;"
+                           onfocus="this.style.borderColor = '#e2611d'" onblur="this.style.borderColor = 'var(--line)'">
+                    @if($query)
+                        <a href="{{ route('hoop.admin.products') }}" style="color: var(--muted); text-decoration: none; font-size: 0.85rem; background: var(--surface-2); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--line); white-space: nowrap;">
+                            <i class="fa fa-times"></i> Clear
+                        </a>
+                    @endif
+                </div>
+            </form>
+
             <table class="product-table">
                 <thead>
                     <tr>

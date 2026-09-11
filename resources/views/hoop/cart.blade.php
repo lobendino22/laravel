@@ -87,8 +87,9 @@
     .cart-qty-input:focus { outline: none; border-color: var(--accent); }
 
     .cart-subtotal { font-weight: 700; color: var(--ink) !important; text-align: right; font-size: 1rem; font-variant-numeric: tabular-nums; }
-    .cart-remove { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .cart-remove { color: var(--muted); text-decoration: none; transition: color 0.15s; font-size: 1.1rem; }
     .cart-remove:hover { color: var(--red); }
+    .cart-remove-form { display: inline; }
 
     .cart-footer {
         display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
@@ -199,12 +200,10 @@
                                                min="0" max="{{ $item['product']->stock }}" class="cart-qty-input">
                                     </td>
                                     <td class="cart-subtotal">&#8369;{{ number_format($item['subtotal'], 2) }}</td>
-                                    <td class="text-right">
-                                        <a href="{{ route('hoop.cart.remove', $item['product']->id) }}"
-                                           class="cart-remove" title="Remove"
-                                           onclick="return confirm('Remove this item?')">
-                                            <i class="fa fa-trash-alt"></i>
-                                        </a>
+                                    <td class="text-right" style="width:60px;">
+                                        <button type="button" class="cart-remove" data-remove-product="{{ $item['product']->id }}" title="Remove item" style="background:none;border:none;cursor:pointer;padding:6px 8px;color:var(--muted);">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -277,6 +276,37 @@
     });
 
     recalc();
+})();
+
+// Remove product from cart via AJAX
+(function() {
+    // Get CSRF token from the form
+    var csrfToken = document.querySelector('input[name="_token"]')?.value;
+    
+    document.querySelectorAll('[data-remove-product]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var productId = this.getAttribute('data-remove-product');
+            if (confirm('Remove this item?')) {
+                fetch('{{ url("/hoop-shop/cart/remove") }}/' + productId, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken
+                    }
+                })
+                .then(function (response) {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Failed to remove item.');
+                    }
+                })
+                .catch(function () {
+                    alert('An error occurred.');
+                });
+            }
+        });
+    });
 })();
 </script>
 @endsection

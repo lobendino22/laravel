@@ -10,11 +10,19 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     // List all products
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::orderByDesc('created_at')->paginate(10);
+        $query = $request->input('search');
 
-        return view('hoop.admin.products.index', compact('products'));
+        $products = Product::query()
+            ->when($query, function ($q, $search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%');
+            })
+            ->orderByDesc('created_at')
+            ->paginate(10);
+
+        return view('hoop.admin.products.index', compact('products', 'query'));
     }
 
     // Show add form
