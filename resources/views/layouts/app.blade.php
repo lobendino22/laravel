@@ -52,6 +52,7 @@
                             <li class="{{ request()->routeIs('movie') ? 'active' : '' }}"><a href="{{ route('movie', ['title' => 'default']) }}">Movie</a></li>
                             <li class="{{ request()->routeIs('book') ? 'active' : '' }}"><a href="{{ route('book', ['title' => 'default']) }}">Book</a></li>
                             <li class="{{ (request()->routeIs('hoop-shop') || request()->routeIs('hoop.*')) ? 'active' : '' }}"><a href="{{ route('hoop-shop') }}">Hoop Shop</a></li>
+                       <li><a href="{{ url('/story') }}">Story </a></li>
                         </ul>
                     </li>
                     <li>
@@ -505,3 +506,4 @@
 </body>
 
 </html>
+@yield('my-js')

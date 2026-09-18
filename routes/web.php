@@ -9,6 +9,13 @@ use App\Http\Controllers\HoopShop\Admin\ProductController;
 use App\Http\Controllers\HoopShop\AuthController;
 use App\Http\Controllers\HoopShop\ShopController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+Route::apiResource('post', PostController::class);
+
+Route::get('/story', function () {
+return view('pages.story');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -118,4 +125,5 @@ Route::prefix('hoop-shop')->group(function () {
             Route::get('/orders/{order}/delete', [AdminOrderController::class, 'destroy'])->name('hoop.admin.orders.destroy');
         });
     });
+
 });
