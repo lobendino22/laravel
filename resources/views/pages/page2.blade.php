@@ -22,8 +22,10 @@
                         </p>
                         <a href="{{ url('/edit-book/'.$d->id) }}" class="btn btn-info btn-sm" onclick="return
                             confirm('Update this book?')"><i class="fa fa-edit"></i></a>
-                        <a href="{{ url('/delete-book/'.$d->id) }}" class="btn btn-danger btn-sm" onclick="return
-                            confirm('Delete this book?')"><i class="fa fa-trash"></i></a>
+                        <form action="{{ url('/delete-book/'.$d->id) }}" method="post" style="display:inline;" onsubmit="return confirm('Delete this book?')">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>

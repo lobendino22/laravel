@@ -8,27 +8,27 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label for="title">Title</label>
+                        <label for="title" class="text-white">Title</label>
                         <input type="text" class="form-control" name="title" id="title" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="description">Description</label>
+                        <label for="description" class="text-white">Description</label>
                         <textarea class="form-control" name="description" id="description"></textarea>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="country_id">Country Code</label>
+                        <label for="country_id" class="text-white">Country Code</label>
                         <input type="number" class="form-control" name="country_id" id="country_id">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="stock">Stock</label>
+                        <label for="stock" class="text-white">Stock</label>
                         <input type="number" class="form-control" name="stock" id="stock">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="amount">Amount</label>
+                        <label for="amount" class="text-white">Amount</label>
                         <input type="number" step="0.01" class="form-control" name="amount" id="amount">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="photo">Photo</label>
+                        <label for="photo" class="text-white">Photo</label>
                         <input type="file" class="form-control" name="photo" id="photo">
                     </div>
                     <hr>

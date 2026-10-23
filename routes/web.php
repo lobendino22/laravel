@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookQueryController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\HoopShop\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\HoopShop\Admin\CustomerController;
 use App\Http\Controllers\HoopShop\Admin\DashboardController;
@@ -53,7 +55,10 @@ Route::get('/book-form', [BookController::class, 'show_add_form']);
 Route::post('/add-book', [BookController::class, 'do_add']);
 Route::get('/edit-book/{id}', [BookController::class, 'show_edit_form']);
 Route::post('/update-book', [BookController::class, 'do_update']);
-Route::get('/delete-book/{id}', [BookController::class, 'do_delete']);
+Route::post('/delete-book/{id}', [BookController::class, 'do_delete']);
+
+// Query Builder vs Eloquent comparison
+Route::get('/book-query-comparison', [BookQueryController::class, 'index']);
 
 // ============================================================
 // HOOP SHOP - storefront (browse, client auth, cart, orders)
